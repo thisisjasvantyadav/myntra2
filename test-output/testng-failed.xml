@@ -6,8 +6,8 @@
       <class name="testCases.TC002_ProductPageTest">
         <methods>
           <include name="tearDown"/>
-          <include name="capture_prices_of_first_five_products"/>
           <include name="setup"/>
+          <include name="sort_price_low_to_high"/>
         </methods>
       </class> <!-- testCases.TC002_ProductPageTest -->
     </classes>

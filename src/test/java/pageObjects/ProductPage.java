@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ProductPage extends BasePage {
@@ -21,6 +22,9 @@ public class ProductPage extends BasePage {
 
 	@FindBy(xpath = "//span[contains(@class,'desktop-badge')]")
 	WebElement bagBadge;
+	
+	@FindBy(xpath="//div[@class='sort-sortBy']")
+	WebElement sortFilter;
 
 	public void clickProduct(int index) {
 	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -76,5 +80,18 @@ public class ProductPage extends BasePage {
 	public boolean isAdded() {
 		System.out.println("Items count: "+addedCount);
 		return addedCount > 0;
+	}
+	
+	public void sortLowToHighPrice() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+	    WebElement sortDropdown = wait.until(ExpectedConditions
+	            .elementToBeClickable(sortFilter));
+	    sortDropdown.click();
+
+	    WebElement option = wait.until(ExpectedConditions
+	            .elementToBeClickable(By.xpath("//label[contains(text(),'Price: Low to High')]")));
+
+	    option.click();
 	}
 }

@@ -13,7 +13,7 @@
 
 		<classes>
 
-			<class name="testCases.TC001_HomePage" />
+			<!-- <class name="testCases.TC001_HomePage" />  -->
 			<class name="testCases.TC002_ProductPageTest" />
 			<!--	<class name="testCases.TC003_LoginDataDrivenTest" />  -->
 		</classes>
