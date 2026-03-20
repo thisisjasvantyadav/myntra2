@@ -14,6 +14,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
@@ -28,15 +29,16 @@ public class BaseClass {
 
 	public Logger logger;
 
-	@Parameters({ "browser" })
-	@BeforeClass(groups = { "Sanity", "Regression", "Master" })
-	public void setup(String br) throws IOException {
+	@BeforeClass
+	@Parameters({ "browser", "os" })
+	public void setup(String br, String os) throws IOException {
 
 		logger = LogManager.getLogger(this.getClass());
 
 		properties = new Properties();
-		FileReader fileReader = new FileReader("\\src\\test\\resources\\config.properties");
+		FileReader fileReader = new FileReader(".\\src\\test\\resources\\config.properties");
 		properties.load(fileReader);
+		
 
 		switch (br.toLowerCase()) {
 		case "chrome":
@@ -47,7 +49,7 @@ public class BaseClass {
 			break;
 		case "firefox":
 			driver = new FirefoxDriver();
-
+			break;
 		default:
 			System.out.println("Invalid Browser Name!!!!");
 			return;
@@ -60,7 +62,7 @@ public class BaseClass {
 
 	}
 
-	@AfterClass(groups = { "Sanity", "Regression", "Master" })
+	@AfterClass
 	public void tearDown() {
 
 		driver.quit();
